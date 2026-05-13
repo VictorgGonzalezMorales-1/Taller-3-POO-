@@ -164,6 +164,7 @@ public class Main {
 
 			case "4":
 				P("Agregar Hechizo");
+				menuAgregarHechizo(scanner);
 				break;
 
 			case "5":
@@ -201,6 +202,70 @@ public class Main {
 			}
 
 		}
+
+	}
+
+	// NombreHechizo;Tipo;Daño;...
+	private static void menuAgregarHechizo(Scanner scanner) {
+
+		String hechizo = "";
+
+		P("Ingrese el nombre del Hechizo");
+		hechizo += scanner.nextLine() + ";";
+		P("Ingrese el tipo de Daño:\n1) Fuego\n2) Tierra\n3) Planta\n4) Agua");
+		String tipo = scanner.nextLine();
+
+		P("Ingrese el daño del Hechizo");
+		String daño = scanner.nextLine();
+
+		switch (tipo) {
+
+		case "1":
+
+			hechizo += "Fuego;";
+			hechizo += daño + ";";
+			P("Ingrese la duración de la quemadura");
+			hechizo += scanner.nextLine();
+
+			break;
+
+		case "2":
+
+			hechizo += "Tierra;";
+			hechizo += daño + ";";
+			P("Ingrese la mejora de defensa");
+			hechizo += scanner.nextLine();
+
+			break;
+
+		case "3":
+
+			hechizo += "Planta;";
+			hechizo += daño + ";";
+			P("Ingrese la DuracionStun");
+			hechizo += scanner.nextLine() + ",";
+			P("Ingrese la cantidad de plantas");
+			hechizo += scanner.nextLine();
+
+			break;
+
+		case "4":
+
+			hechizo += "Agua;";
+			hechizo += daño + ";";
+			P("Ingrese la CantidadHeal");
+			hechizo += scanner.nextLine() + ",";
+			P("Ingrese la Presión del Agua");
+			hechizo += scanner.nextLine();
+
+			break;
+
+		default:
+			P("Tipo no reconocido ...");
+			break;
+		}
+
+		S.trabajarHechizo(hechizo.split(";"));
 
 	}
 
