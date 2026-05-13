@@ -170,6 +170,8 @@ public class Main {
 	private static void menuAnalista(Scanner scanner) {
 		
 		S.ordenarHechizos();
+		S.ordenarMagos();
+		
 		String respuesta = "";
 
 		while (!respuesta.equals("7")) {

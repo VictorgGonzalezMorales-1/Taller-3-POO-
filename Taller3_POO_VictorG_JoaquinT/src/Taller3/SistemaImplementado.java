@@ -145,7 +145,7 @@ public class SistemaImplementado implements Sistema {
 
 	}
 
-	// Método generado para ordenar la ArrayList de Hechizos de menor a mayor
+	// Método generado para ordenar la ArrayList de Hechizos de mayor a menor
 	public void ordenarHechizos() {
 
 		Hechizo h;
@@ -159,6 +159,29 @@ public class SistemaImplementado implements Sistema {
 					h = H.get(b);
 					H.set(b, H.get(b + 1));
 					H.set(b + 1, h);
+
+				}
+
+			}
+
+		}
+
+	}
+
+	// Método generado para ordenar la ArrayList de Magos de mayor a menor
+	public void ordenarMagos() {
+
+		Mago h;
+
+		for (int a = 0; a < H.size() - 1; a++) {
+
+			for (int b = 0; b < H.size() - a - 1; b++) {
+
+				if (M.get(b).entregarPuntaje() < H.get(b + 1).entregarPuntaje()) {
+
+					h = M.get(b);
+					M.set(b, M.get(b + 1));
+					M.set(b + 1, h);
 
 				}
 
@@ -182,7 +205,7 @@ public class SistemaImplementado implements Sistema {
 		return texto;
 	}
 
-	//Método generado para entregar todos los hechizos junto a su puntuación 
+	// Método generado para entregar todos los hechizos junto a su puntuación
 	public String entregarHechizosPuntuacion() {
 
 		String texto = "";

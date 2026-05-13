@@ -17,9 +17,8 @@ public abstract class Hechizo {
 	public String getNombreHechizo() {
 		return nombreHechizo;
 	}
-	
+
+	//Método abstracto generado para que todos sus hijos calculen su puntaje
 	public abstract int entregarPuntaje();
-	
-	
 
 }
