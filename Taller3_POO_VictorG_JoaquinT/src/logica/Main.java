@@ -37,15 +37,34 @@ public class Main {
 
 			while (lector.hasNextLine()) {
 
-				String[] partes = lector.nextLine().split(";");
+				String linea = lector.nextLine();
+
+				if (linea.length() == 0) {
+					continue;
+				}
+
+				String[] partes = linea.split(";");
+
+				if (partes.length < 4) {
+					P("Línea inválida en Hechizos.txt, fue ignorada: " + linea);
+					continue;
+				}
+
+				if (partes[0].length() == 0 || partes[1].length() == 0 || partes[2].length() == 0 || partes[3].length() == 0) {
+					P("Línea inválida en Hechizos.txt, fue ignorada: " + linea);
+					continue;
+				}
+
 				S.trabajarHechizo(partes);
 
 			}
 
 			lector.close();
 
+		} catch (FileNotFoundException e) {
+			P("No se encontró el archivo Hechizos.txt");
 		} catch (Exception e) {
-			P(e.getMessage());
+			P("Error al leer Hechizos.txt: " + e.getMessage());
 		}
 
 	}
@@ -63,15 +82,34 @@ public class Main {
 
 			while (lector.hasNextLine()) {
 
-				String[] partes = lector.nextLine().split(";");
+				String linea = lector.nextLine();
+
+				if (linea.length() == 0) {
+					continue;
+				}
+
+				String[] partes = linea.split(";", -1);
+
+				if (partes.length < 1) {
+					P("Línea inválida en Magos.txt, fue ignorada: " + linea);
+					continue;
+				}
+
+				if (partes[0].length() == 0) {
+					P("Línea inválida en Magos.txt, fue ignorada: " + linea);
+					continue;
+				}
+
 				S.trabajarMago(partes, true);
 
 			}
 
 			lector.close();
 
+		} catch (FileNotFoundException e) {
+			P("No se encontró el archivo Magos.txt");
 		} catch (Exception e) {
-			P("No se encontró el archivo ....");
+			P("Error al leer Magos.txt: " + e.getMessage());
 		}
 
 	}
@@ -134,11 +172,31 @@ public class Main {
 
 				P("Ingrese el Mago a agregar con el formato:");
 				P("NombreMago;Hechizo1|Hechizo2|HechizoN");
+				P("También puede ingresar solo:");
+				P("NombreMago;");
 
-				String[] m = scanner.nextLine().split(";");
+				String lineaMago = scanner.nextLine();
+
+				if (lineaMago.length() == 0) {
+					P("No se agregó el mago porque no se ingresaron datos.\n");
+					break;
+				}
+
+				String[] m = lineaMago.split(";", -1);
+
+				if (m.length < 1) {
+					P("Formato inválido.\n");
+					break;
+				}
+
+				if (m[0].length() == 0) {
+					P("Formato inválido. El mago debe tener nombre.\n");
+					break;
+				}
+
 				S.trabajarMago(m, false);
 
-				P("Mago Agregado\n");
+				P("Mago agregado correctamente.\n");
 
 				break;
 
@@ -149,7 +207,7 @@ public class Main {
 				P("-1) Devolverse\n");
 				P("Ingrese la posición del Mago que desea modificar:");
 
-				int posicionModificarMago = Integer.valueOf(scanner.nextLine());
+				int posicionModificarMago = leerEntero(scanner);
 
 				if (posicionModificarMago == -1) {
 					P("Ningún Mago fue modificado\n");
@@ -158,13 +216,27 @@ public class Main {
 
 				P("Ingrese los nuevos datos del Mago con el formato:");
 				P("NombreMago;Hechizo1|Hechizo2|HechizoN");
+				P("También puede ingresar solo:");
+				P("NombreMago;");
 
-				String[] datosMago = scanner.nextLine().split(";");
+				String lineaMagoModificar = scanner.nextLine();
+
+				if (lineaMagoModificar.length() == 0) {
+					P("No se modificó el mago porque no se ingresaron datos.\n");
+					break;
+				}
+
+				String[] datosMago = lineaMagoModificar.split(";", -1);
+
+				if (datosMago.length < 1 || datosMago[0].length() == 0) {
+					P("Formato inválido. El mago debe tener nombre.\n");
+					break;
+				}
 
 				if (S.modificarMago(posicionModificarMago - 1, datosMago)) {
 					P("Mago modificado correctamente\n");
 				} else {
-					P("No se pudo modificar el Mago\n");
+					P("No se pudo modificar el Mago. Verifique la posición o el formato ingresado\n");
 				}
 
 				break;
@@ -176,7 +248,7 @@ public class Main {
 				P("-1) Devolverse\n");
 				P("Ingrese la posición del Mago que desea eliminar");
 
-				int posicion1 = Integer.valueOf(scanner.nextLine());
+				int posicion1 = leerEntero(scanner);
 
 				if (S.eliminarMago(posicion1 - 1) == true) {
 					P("Elemento removido\n");
@@ -205,7 +277,7 @@ public class Main {
 				P("-1) Devolverse\n");
 				P("Ingrese la posición del Hechizo que desea modificar:");
 
-				int posicionModificarHechizo = Integer.valueOf(scanner.nextLine());
+				int posicionModificarHechizo = leerEntero(scanner);
 
 				if (posicionModificarHechizo == -1) {
 					P("Ningún Hechizo fue modificado\n");
@@ -220,12 +292,24 @@ public class Main {
 				P("Planta: Polen Somnífero;Planta;81;3,10");
 				P("Agua: Escaldar;Agua;110;45,360");
 
-				String[] datosHechizo = scanner.nextLine().split(";");
+				String lineaHechizoModificar = scanner.nextLine();
+
+				if (lineaHechizoModificar.length() == 0) {
+					P("No se modificó el hechizo porque no se ingresaron datos.\n");
+					break;
+				}
+
+				String[] datosHechizo = lineaHechizoModificar.split(";");
+
+				if (datosHechizo.length < 4) {
+					P("Formato inválido. Debe ingresar NombreHechizo;Tipo;Daño;DatosExtra\n");
+					break;
+				}
 
 				if (S.modificarHechizo(posicionModificarHechizo - 1, datosHechizo)) {
 					P("Hechizo modificado correctamente\n");
 				} else {
-					P("No se pudo modificar el Hechizo\n");
+					P("No se pudo modificar el Hechizo. Verifique la posición o el formato ingresado\n");
 				}
 
 				break;
@@ -237,7 +321,7 @@ public class Main {
 				P("-1) Devolverse\n");
 				P("Ingrese la posición del Hechizo que desea eliminar");
 
-				int posicion2 = Integer.valueOf(scanner.nextLine());
+				int posicion2 = leerEntero(scanner);
 
 				if (S.eliminarHechizo(posicion2 - 1) == true) {
 					P("Elemento removido\n");
@@ -388,6 +472,26 @@ public class Main {
 
 	}
 
+	
+	private static int leerEntero(Scanner scanner) {
+
+		int numero = 0;
+		boolean valido = false;
+
+		while (valido == false) {
+
+			try {
+				numero = Integer.valueOf(scanner.nextLine());
+				valido = true;
+			} catch (NumberFormatException e) {
+				P("Debe ingresar un número válido.");
+			}
+
+		}
+
+		return numero;
+	}
+	
 	// Método para imprimir bonito
 	private static void P(String t) {
 		System.out.println(t);

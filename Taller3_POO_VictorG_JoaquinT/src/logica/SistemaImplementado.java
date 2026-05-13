@@ -21,36 +21,25 @@ public class SistemaImplementado implements Sistema {
 	private static LinkedList<Mago> M = new LinkedList<Mago>();
 
 	// Método generado para recibir y gestionar el trabajo
-	// Para la creación/ Almacenamiento de Hechizos
+
+	@Override
 	public void trabajarHechizo(String[] partes) {
 
-		Hechizo h = null;
-
-		String[] partes2 = partes[3].split(",");
-
-		switch (partes[1]) {
-
-		case "Fuego":
-			h = new Fuego(partes[0], partes[1], Integer.valueOf(partes[2]), Integer.valueOf(partes2[0]));
-			break;
-
-		case "Tierra":
-			h = new Roca(partes[0], partes[1], Integer.valueOf(partes[2]), Integer.valueOf(partes2[0]));
-			break;
-
-		case "Planta":
-			h = new Planta(partes[0], partes[1], Integer.valueOf(partes[2]), Integer.valueOf(partes2[0]),
-					Integer.valueOf(partes2[1]));
-			break;
-
-		case "Agua":
-			h = new Agua(partes[0], partes[1], Integer.valueOf(partes[2]), Integer.valueOf(partes2[0]),
-					Integer.valueOf(partes2[1]));
-			break;
-
+		if (partes == null) {
+			return;
 		}
 
-		if (revisarHechizoUnico(h) == false) {
+		if (partes.length < 4) {
+			return;
+		}
+
+		if (partes[0].length() == 0 || partes[1].length() == 0 || partes[2].length() == 0 || partes[3].length() == 0) {
+			return;
+		}
+
+		Hechizo h = crearHechizoDesdePartes(partes);
+
+		if (h != null && revisarHechizoUnico(h) == false) {
 			H.add(h);
 		}
 
@@ -81,12 +70,29 @@ public class SistemaImplementado implements Sistema {
 	@Override
 	public void trabajarMago(String[] partes, boolean agregarHechizos) {
 
-		Mago m = new Mago(partes[0]);
-		M.add(m);
-
-		if (agregarHechizos == true) {
-			agregarHechizo(partes[1], m);
+		if (partes == null) {
+			return;
 		}
+
+		if (partes.length < 1) {
+			return;
+		}
+
+		if (partes[0].length() == 0) {
+			return;
+		}
+
+		Mago m = new Mago(partes[0]);
+
+		if (partes.length >= 2) {
+
+			if (partes[1].length() > 0) {
+				agregarHechizo(partes[1], m);
+			}
+
+		}
+
+		M.add(m);
 
 		if (agregarHechizos == false) {
 			guardarMagos();
@@ -94,21 +100,34 @@ public class SistemaImplementado implements Sistema {
 
 	}
 	// Método generado para almacenar los hechizos del mago en su
-	// ArrayList de hechizos
 	public void agregarHechizo(String string, Mago mago) {
+
+		if (string == null) {
+			return;
+		}
+
+		if (mago == null) {
+			return;
+		}
+
+		if (string.length() == 0) {
+			return;
+		}
 
 		String[] hechizos = string.split("\\|");
 
 		for (int a = 0; a < hechizos.length; a++) {
 
-			Hechizo h = buscarHechizo(hechizos[a]);
+			if (hechizos[a].length() > 0) {
 
-			if (h != null) {
-				mago.almacenarHechizos(h);
+				Hechizo h = buscarHechizo(hechizos[a]);
+
+				if (h != null) {
+					mago.almacenarHechizos(h);
+				}
+
 			}
-
 		}
-
 	}
 
 	// Método generado para buscar un hechizo con su nombre
@@ -392,9 +411,28 @@ public class SistemaImplementado implements Sistema {
 
 			BufferedWriter escritor = new BufferedWriter(new FileWriter("Magos.txt"));
 
+			boolean primeraLinea = true;
+
 			for (Mago m : M) {
-				escritor.write(m.formatoArchivo());
-				escritor.newLine();
+
+				if (m != null) {
+
+					if (m.getNombreMago().length() > 0) {
+
+						String linea = m.formatoArchivo();
+
+						if (linea.length() > 0) {
+
+							if (primeraLinea == false) {
+								escritor.newLine();
+							}
+
+							escritor.write(linea);
+							primeraLinea = false;
+
+						}
+					}
+				}
 			}
 
 			escritor.close();
@@ -412,9 +450,25 @@ public class SistemaImplementado implements Sistema {
 
 			BufferedWriter escritor = new BufferedWriter(new FileWriter("Hechizos.txt"));
 
+			boolean primeraLinea = true;
+
 			for (Hechizo h : H) {
-				escritor.write(h.formatoArchivo());
-				escritor.newLine();
+
+				if (h != null) {
+
+					String linea = h.formatoArchivo();
+
+					if (linea.length() > 0) {
+
+						if (primeraLinea == false) {
+							escritor.newLine();
+						}
+
+						escritor.write(linea);
+						primeraLinea = false;
+
+					}
+				}
 			}
 
 			escritor.close();
@@ -427,34 +481,69 @@ public class SistemaImplementado implements Sistema {
 
 	private Hechizo crearHechizoDesdePartes(String[] partes) {
 
-		Hechizo h = null;
+		try {
 
-		if (partes.length < 4) {
+			if (partes == null) {
+				return null;
+			}
+
+			if (partes.length < 4) {
+				return null;
+			}
+
+			if (partes[0].length() == 0 || partes[1].length() == 0 || partes[2].length() == 0 || partes[3].length() == 0) {
+				return null;
+			}
+
+			String nombre = partes[0];
+			String tipo = partes[1];
+			int daño = Integer.valueOf(partes[2]);
+
+			String[] partes2 = partes[3].split(",");
+
+			switch (tipo) {
+
+			case "Fuego":
+
+				if (partes2.length < 1 || partes2[0].length() == 0) {
+					return null;
+				}
+
+				return new Fuego(nombre, tipo, daño, Integer.valueOf(partes2[0]));
+
+			case "Tierra":
+
+				if (partes2.length < 1 || partes2[0].length() == 0) {
+					return null;
+				}
+
+				return new Roca(nombre, tipo, daño, Integer.valueOf(partes2[0]));
+
+			case "Planta":
+
+				if (partes2.length < 2 || partes2[0].length() == 0 || partes2[1].length() == 0) {
+					return null;
+				}
+
+				return new Planta(nombre, tipo, daño, Integer.valueOf(partes2[0]), Integer.valueOf(partes2[1]));
+
+			case "Agua":
+
+				if (partes2.length < 2 || partes2[0].length() == 0 || partes2[1].length() == 0) {
+					return null;
+				}
+
+				return new Agua(nombre, tipo, daño, Integer.valueOf(partes2[0]), Integer.valueOf(partes2[1]));
+
+			default:
+				return null;
+			}
+
+		} catch (NumberFormatException e) {
+			return null;
+		} catch (Exception e) {
 			return null;
 		}
 
-		String[] partes2 = partes[3].split(",");
-
-		switch (partes[1]) {
-
-		case "Fuego":
-			h = new Fuego(partes[0], partes[1], Integer.valueOf(partes[2]), Integer.valueOf(partes2[0]));
-			break;
-
-		case "Tierra":
-			h = new Roca(partes[0], partes[1], Integer.valueOf(partes[2]), Integer.valueOf(partes2[0]));
-			break;
-
-		case "Planta":
-			h = new Planta(partes[0], partes[1], Integer.valueOf(partes[2]), Integer.valueOf(partes2[0]), Integer.valueOf(partes2[1]));
-			break;
-
-		case "Agua":
-			h = new Agua(partes[0], partes[1], Integer.valueOf(partes[2]), Integer.valueOf(partes2[0]), Integer.valueOf(partes2[1]));
-			break;
-		}
-
-		return h;
 	}
-	
 }

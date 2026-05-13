@@ -40,11 +40,21 @@ public class Mago {
 
 		return puntaje;
 	}
-
+	
 	public String formatoArchivo() {
+
+		if (nombreMago == null) {
+			return "";
+		}
+
+		if (nombreMago.length() == 0) {
+			return "";
+		}
+
 		String texto = nombreMago + ";";
 
 		for (int i = 0; i < hechizos.size(); i++) {
+
 			texto += hechizos.get(i).getNombreHechizo();
 
 			if (i < hechizos.size() - 1) {
