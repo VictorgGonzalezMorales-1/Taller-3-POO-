@@ -5,6 +5,9 @@ import java.util.Scanner;
 import java.io.*;
 
 public class Main {
+	
+	//Variable comunicadora entre Sistema y Main
+	static Sistema S = new SistemaImplementado();
 
 	public static void main(String[] args) {
 
