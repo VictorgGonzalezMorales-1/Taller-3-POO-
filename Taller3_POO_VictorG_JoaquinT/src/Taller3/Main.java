@@ -15,7 +15,7 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 
 		lecturaHechizos();
-		// lecturaMagos();
+		lecturaMagos();
 
 		paneles(scanner);
 
@@ -64,6 +64,7 @@ public class Main {
 			while (lector.hasNextLine()) {
 
 				String[] partes = lector.nextLine().split(";");
+				S.trabajarMago(partes, true);
 
 			}
 

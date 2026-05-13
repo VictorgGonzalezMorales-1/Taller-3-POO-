@@ -6,8 +6,12 @@ import java.util.ArrayList;
 public class SistemaImplementado implements Sistema {
 
 	// ArrayLis generada para almacenar los hechizos generados por la lectura
-	// de archivos y opociones del menú
+	// de archivos y opciones del menú
 	private static ArrayList<Hechizo> H = new ArrayList<Hechizo>();
+
+	// ArrayLis generada para almacenar los Magos generados por la lectura
+	// de archivos y opciones del menú
+	private static ArrayList<Mago> M = new ArrayList<Mago>();
 
 	// Método generado para recibir y gestionar el trabajo
 	// Para la creación/ Almacenamiento de Hechizos
@@ -47,7 +51,7 @@ public class SistemaImplementado implements Sistema {
 
 	// Método generado para revisar que no se repita ningún hechizo
 	// para solo tener lo necesario
-	private boolean revisarHechizoUnico(Hechizo h) {
+	public boolean revisarHechizoUnico(Hechizo h) {
 
 		if (H.size() == 0) {
 			return false;
@@ -67,7 +71,47 @@ public class SistemaImplementado implements Sistema {
 
 	// Método generado para recibir y gestionar el trabajo
 	// Para la creación/ Almacenamiento de Magos
-	public void trabajarMago(String[] partes) {
+	public void trabajarMago(String[] partes, boolean agregarHechizos) {
+
+		Mago m = new Mago(partes[0]);
+		M.add(m);
+
+		if (agregarHechizos == true) {
+			agregarHechizo(partes[1], m);
+		}
+
+	}
+
+	// Método generado para almacenar los hechizos del mago en su
+	// ArrayList de hechizos
+	public void agregarHechizo(String string, Mago mago) {
+
+		String[] hechizos = string.split("\\|");
+
+		for (int a = 0; a < hechizos.length; a++) {
+
+			Hechizo h = buscarHechizo(hechizos[a]);
+
+			if (h != null) {
+				mago.almacenarHechizos(h);
+			}
+
+		}
+
+	}
+
+	// Método generado para buscar un hechizo con su nombre
+	public Hechizo buscarHechizo(String nombreHechizo) {
+
+		for (Hechizo h : H) {
+
+			if (h.getNombreHechizo().equals(nombreHechizo)) {
+				return h;
+			}
+
+		}
+
+		return null;
 
 	}
 
