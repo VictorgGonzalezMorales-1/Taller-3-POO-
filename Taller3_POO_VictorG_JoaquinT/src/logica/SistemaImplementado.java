@@ -289,4 +289,22 @@ public class SistemaImplementado implements Sistema {
 
 	}
 
+	//Método generado para elimiar al mago del LinkedList
+	public boolean eliminarMago(int n) {
+
+		if (n == -1) {
+			return false;
+		}
+
+		if (n >= 0 && n < M.size()) {
+
+			M.remove(n);
+
+			return true;
+
+		}
+
+		return false;
+	}
+
 }

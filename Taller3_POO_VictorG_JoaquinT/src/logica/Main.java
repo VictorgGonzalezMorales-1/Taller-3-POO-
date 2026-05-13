@@ -144,7 +144,22 @@ public class Main {
 				break;
 
 			case "3":
-				P("Eliminar Mago");
+
+				P("Lista de Magos\n");
+				P(S.solicitarMagos());
+				P("-1) Devolverse\n");
+				P("Ingrese la posición del Mago que desea eliminar");
+				int posicion1 = Integer.valueOf(scanner.nextLine());
+				if (S.eliminarMago(posicion1 - 1) == true) {
+					P("Elemento removido\n");
+				} else {
+
+					if (posicion1 == -1) {
+						P("Ningún Mago fué removido\n");
+					} else {
+						P("Ingrese una posición valida\n");
+					}
+				}
 				break;
 
 			case "4":
@@ -161,13 +176,13 @@ public class Main {
 				P(S.solicitarhechizos());
 				P("-1) Devolverse\n");
 				P("Ingrese la posición del Hechizo que desea eliminar");
-				int posicion = Integer.valueOf(scanner.nextLine());
-				if (S.eliminarHechizo(posicion - 1) == true) {
+				int posicion2 = Integer.valueOf(scanner.nextLine());
+				if (S.eliminarHechizo(posicion2 - 1) == true) {
 					P("Elemento removido\n");
 				} else {
 
-					if (posicion == -1) {
-						P("Ningún elemento fué removido\n");
+					if (posicion2 == -1) {
+						P("Ningún Hechizo fué removido\n");
 					} else {
 						P("Ingrese una posición valida\n");
 					}
