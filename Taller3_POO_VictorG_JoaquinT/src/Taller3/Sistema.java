@@ -9,8 +9,9 @@ public interface Sistema {
 	
 	//Analista
 	String entregarTopHechizos();
+	String entregarTopMago();
 	String solicitarhechizos();
 	String solicitarMagos();
 	String entregarHechizosPuntuacion();
-	
+
 }

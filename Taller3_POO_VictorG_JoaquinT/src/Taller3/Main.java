@@ -191,7 +191,8 @@ public class Main {
 				break;
 
 			case "2":
-				P("Top 3 Mejores Magos");
+				P("Top 3 Mejores Magos\n");
+				P(S.entregarTopMago());
 				break;
 
 			case "3":
@@ -210,7 +211,8 @@ public class Main {
 				break;
 
 			case "6":
-				P("Mostrar todos los magos junto a su puntuacion");
+				P("Magos\n");
+				P(S.solicitarMagos());
 				break;
 
 			case "7":

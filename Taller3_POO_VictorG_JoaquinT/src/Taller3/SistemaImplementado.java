@@ -137,7 +137,7 @@ public class SistemaImplementado implements Sistema {
 
 		for (int a = 0; a < M.size(); a++) {
 
-			texto += (a + 1) + ") " + M.get(a).getNombreMago() + "\n";
+			texto += (a + 1) + ") " + M.get(a).getNombreMago() + " - " + M.get(a).entregarPuntaje() + "\n";
 
 		}
 
@@ -171,17 +171,17 @@ public class SistemaImplementado implements Sistema {
 	// Método generado para ordenar la ArrayList de Magos de mayor a menor
 	public void ordenarMagos() {
 
-		Mago h;
+		Mago m;
 
-		for (int a = 0; a < H.size() - 1; a++) {
+		for (int a = 0; a < M.size() - 1; a++) {
 
-			for (int b = 0; b < H.size() - a - 1; b++) {
+			for (int b = 0; b < M.size() - a - 1; b++) {
 
-				if (M.get(b).entregarPuntaje() < H.get(b + 1).entregarPuntaje()) {
+				if (M.get(b).entregarPuntaje() < M.get(b + 1).entregarPuntaje()) {
 
-					h = M.get(b);
+					m = M.get(b);
 					M.set(b, M.get(b + 1));
-					M.set(b + 1, h);
+					M.set(b + 1, m);
 
 				}
 
@@ -213,6 +213,20 @@ public class SistemaImplementado implements Sistema {
 		for (int a = 0; a < H.size(); a++) {
 
 			texto += (a + 1) + ") " + H.get(a).nombreHechizo + " - Puntaje: " + H.get(a).entregarPuntaje() + "\n";
+
+		}
+
+		return texto;
+	}
+
+	//Método generado para entregar los 3 mejores magos
+	public String entregarTopMago() {
+		
+		String texto = "";
+
+		for (int a = 0; a < 3; a++) {
+
+			texto += (a + 1) + ") " + M.get(a).getNombreMago() + "\n";
 
 		}
 
