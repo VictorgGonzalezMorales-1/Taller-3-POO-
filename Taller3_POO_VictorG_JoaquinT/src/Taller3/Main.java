@@ -191,11 +191,13 @@ public class Main {
 				break;
 
 			case "3":
-				P("Mostrar todos los Hechizos");
+				P("Hechizos: \n");
+				P(S.solicitarhechizos());
 				break;
 
 			case "4":
-				P("Mostrar todos los magos");
+				P("Magos: \n");
+				P(S.solicitarMagos());
 				break;
 
 			case "5":

@@ -115,4 +115,34 @@ public class SistemaImplementado implements Sistema {
 
 	}
 
+	// Método generado para entregar en orden todos los Hechizos del ArrayList H
+	public String solicitarhechizos() {
+
+		String texto = "";
+
+		for (int a = 0; a < H.size(); a++) {
+
+			texto += (a + 1) + ") " + H.get(a).getNombreHechizo() + "\n";
+
+		}
+
+		return texto;
+
+	}
+
+	// Método generado para entregar en orden todos los Magos del ArrayList M
+	public String solicitarMagos() {
+
+		String texto = "";
+
+		for (int a = 0; a < M.size(); a++) {
+
+			texto += (a + 1) + ") " + M.get(a).getNombreMago() + "\n";
+
+		}
+
+		return texto;
+
+	}
+
 }

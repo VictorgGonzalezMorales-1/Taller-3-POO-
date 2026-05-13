@@ -23,6 +23,10 @@ public class Mago {
 		hechizosMago.add(h);
 	}
 
+	public String getNombreMago() {
+		return nombreMago;
+	}
+
 	@Override
 	public String toString() {
 		return "Mago [nombreMago=" + nombreMago + ", hechizosMago=" + hechizosMago + "]";

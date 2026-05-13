@@ -19,5 +19,7 @@ public abstract class Hechizo {
 	}
 	
 	
+	
+	
 
 }
