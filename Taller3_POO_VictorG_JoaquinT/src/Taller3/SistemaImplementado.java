@@ -168,4 +168,32 @@ public class SistemaImplementado implements Sistema {
 
 	}
 
+	// Método generado para entregar los 10 hechizos con mayor puntuación
+	public String entregarTopHechizos() {
+
+		String texto = "";
+
+		for (int a = 0; a < 10; a++) {
+
+			texto += (a + 1) + ") " + H.get(a).nombreHechizo + "\n";
+
+		}
+
+		return texto;
+	}
+
+	//Método generado para entregar todos los hechizos junto a su puntuación 
+	public String entregarHechizosPuntuacion() {
+
+		String texto = "";
+
+		for (int a = 0; a < H.size(); a++) {
+
+			texto += (a + 1) + ") " + H.get(a).nombreHechizo + " - Puntaje: " + H.get(a).entregarPuntaje() + "\n";
+
+		}
+
+		return texto;
+	}
+
 }

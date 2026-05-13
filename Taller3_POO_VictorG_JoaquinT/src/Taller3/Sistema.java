@@ -7,7 +7,9 @@ public interface Sistema {
 	void ordenarHechizos();
 	
 	//Analista
+	String entregarTopHechizos();
 	String solicitarhechizos();
 	String solicitarMagos();
-
+	String entregarHechizosPuntuacion();
+	
 }

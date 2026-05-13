@@ -184,7 +184,8 @@ public class Main {
 			switch (respuesta) {
 
 			case "1":
-				P("Top 10 Mejores Hechizos");
+				P("Top 10 Mejores Hechizos\n");
+				P(S.entregarTopHechizos());
 				break;
 
 			case "2":
@@ -202,7 +203,8 @@ public class Main {
 				break;
 
 			case "5":
-				P("Mostrar todos los Hechizos junto a su puntuacion");
+				P("Hechizos\n");
+				P(S.entregarHechizosPuntuacion());
 				break;
 
 			case "6":
