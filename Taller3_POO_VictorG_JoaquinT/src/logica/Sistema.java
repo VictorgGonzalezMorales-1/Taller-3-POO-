@@ -9,7 +9,7 @@ public interface Sistema {
 	
 	//Administrador()
 	//trabajarMago(String[] partes, boolean agregarHechizos);
-	
+	boolean eliminarHechizo(int n);
 	
 	//Analista
 	String entregarTopHechizos();

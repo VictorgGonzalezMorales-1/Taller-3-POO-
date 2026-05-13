@@ -115,6 +115,9 @@ public class Main {
 	// a los resultados de las opciones
 	private static void menuAdministrador(Scanner scanner) {
 
+		S.ordenarHechizos();
+		S.ordenarMagos();
+
 		String respuesta = "";
 
 		while (!respuesta.equals("7")) {
@@ -153,7 +156,23 @@ public class Main {
 				break;
 
 			case "6":
-				P("Eliminar Hechizo");
+
+				P("Lista de Hechizos\n");
+				P(S.solicitarhechizos());
+				P("-1) Devolverse\n");
+				P("Ingrese la posición del Hechizo que desea eliminar");
+				int posicion = Integer.valueOf(scanner.nextLine());
+				if (S.eliminarHechizo(posicion - 1) == true) {
+					P("Elemento removido\n");
+				} else {
+
+					if (posicion == -1) {
+						P("Ningún elemento fué removido\n");
+					} else {
+						P("Ingrese una posición valida\n");
+					}
+				}
+
 				break;
 
 			case "7":

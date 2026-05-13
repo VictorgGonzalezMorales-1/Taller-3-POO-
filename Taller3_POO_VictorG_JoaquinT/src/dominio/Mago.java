@@ -1,19 +1,19 @@
 package dominio;
 
 //Importar librerias necesarias
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Mago {
 
 	// Declaración de atributos
 	private String nombreMago;
-	private ArrayList<Hechizo> hechizosMago;
+	private LinkedList<Hechizo> hechizosMago;
 
 	// Generar Constructor
 	public Mago(String nombreMago) {
 
 		this.nombreMago = nombreMago;
-		this.hechizosMago = new ArrayList<Hechizo>();
+		this.hechizosMago = new LinkedList<Hechizo>();
 
 	}
 
@@ -47,7 +47,15 @@ public class Mago {
 		return "Mago [nombreMago=" + nombreMago + ", hechizosMago=" + hechizosMago + "]";
 	}
 
-	// La puntuacion de cada mago se calcula sumando las puntuaciones de cada
-	// hechizo que domina.
+	public LinkedList<Hechizo> getHechizosMago() {
+		return hechizosMago;
+	}
+
+	// Método generado para olvidar un hechizo
+	public void olvidarHechizo(Hechizo h) {
+
+		this.hechizosMago.remove(h);
+
+	}
 
 }

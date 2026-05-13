@@ -1,7 +1,7 @@
 package logica;
 
 //Importar librerias necesarias
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import dominio.*;
 
@@ -9,11 +9,11 @@ public class SistemaImplementado implements Sistema {
 
 	// ArrayLis generada para almacenar los hechizos generados por la lectura
 	// de archivos y opciones del menú
-	private static ArrayList<Hechizo> H = new ArrayList<Hechizo>();
+	private static LinkedList<Hechizo> H = new LinkedList<Hechizo>();
 
 	// ArrayLis generada para almacenar los Magos generados por la lectura
 	// de archivos y opciones del menú
-	private static ArrayList<Mago> M = new ArrayList<Mago>();
+	private static LinkedList<Mago> M = new LinkedList<Mago>();
 
 	// Método generado para recibir y gestionar el trabajo
 	// Para la creación/ Almacenamiento de Hechizos
@@ -124,8 +124,9 @@ public class SistemaImplementado implements Sistema {
 
 		for (int a = 0; a < H.size(); a++) {
 
-			texto += (a + 1) + ") " + H.get(a).getNombreHechizo() + "\n";
-
+			if (H.get(a) != null) {
+				texto += (a + 1) + ") " + H.get(a).getNombreHechizo() + "\n";
+			}
 		}
 
 		return texto;
@@ -139,8 +140,9 @@ public class SistemaImplementado implements Sistema {
 
 		for (int a = 0; a < M.size(); a++) {
 
-			texto += (a + 1) + ") " + M.get(a).getNombreMago() + "\n";
-
+			if (M.get(a) != null) {
+				texto += (a + 1) + ") " + M.get(a).getNombreMago() + "\n";
+			}
 		}
 
 		return texto;
@@ -200,7 +202,9 @@ public class SistemaImplementado implements Sistema {
 
 		for (int a = 0; a < 10; a++) {
 
-			texto += (a + 1) + ") " + H.get(a).getNombreHechizo() + "\n";
+			if (H.get(a) != null) {
+				texto += (a + 1) + ") " + H.get(a).getNombreHechizo() + "\n";
+			}
 
 		}
 
@@ -214,8 +218,10 @@ public class SistemaImplementado implements Sistema {
 
 		for (int a = 0; a < H.size(); a++) {
 
-			texto += (a + 1) + ") " + H.get(a).getNombreHechizo() + " - Puntaje: " + H.get(a).entregarPuntaje() + "\n";
-
+			if (H.get(a) != null) {
+				texto += (a + 1) + ") " + H.get(a).getNombreHechizo() + " - Puntaje: " + H.get(a).entregarPuntaje()
+						+ "\n";
+			}
 		}
 
 		return texto;
@@ -228,7 +234,9 @@ public class SistemaImplementado implements Sistema {
 
 		for (int a = 0; a < 3; a++) {
 
-			texto += (a + 1) + ") " + M.get(a).getNombreMago() + "\n";
+			if (M.get(a) != null) {
+				texto += (a + 1) + ") " + M.get(a).getNombreMago() + "\n";
+			}
 
 		}
 
@@ -247,6 +255,37 @@ public class SistemaImplementado implements Sistema {
 		}
 
 		return texto;
+
+	}
+
+	// Método generado para eliminar un Hechizo del ArrayList
+	public boolean eliminarHechizo(int n) {
+
+		if (n == -1) {
+			return false;
+		}
+
+		if (n >= 0 && n < H.size()) {
+
+			Hechizo h = H.get(n);
+			H.remove(n);
+			eliminarHechizoMago(h);
+
+			return true;
+
+		}
+
+		return false;
+	}
+
+	// Método generado para eliminar un hechizo de los magos en base a su nombre
+	public void eliminarHechizoMago(Hechizo h) {
+
+		for (Mago m : M) {
+
+			m.olvidarHechizo(h);
+
+		}
 
 	}
 
