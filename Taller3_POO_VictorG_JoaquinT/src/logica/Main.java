@@ -132,15 +132,41 @@ public class Main {
 
 			case "1":
 
-				P("Ingrese el nombre del Mago a agregar: ");
+				P("Ingrese el Mago a agregar con el formato:");
+				P("NombreMago;Hechizo1|Hechizo2|HechizoN");
+
 				String[] m = scanner.nextLine().split(";");
 				S.trabajarMago(m, false);
+
 				P("Mago Agregado\n");
 
 				break;
 
 			case "2":
-				P("Modificar Mago");
+
+				P("Lista de Magos\n");
+				P(S.solicitarMagos());
+				P("-1) Devolverse\n");
+				P("Ingrese la posición del Mago que desea modificar:");
+
+				int posicionModificarMago = Integer.valueOf(scanner.nextLine());
+
+				if (posicionModificarMago == -1) {
+					P("Ningún Mago fue modificado\n");
+					break;
+				}
+
+				P("Ingrese los nuevos datos del Mago con el formato:");
+				P("NombreMago;Hechizo1|Hechizo2|HechizoN");
+
+				String[] datosMago = scanner.nextLine().split(";");
+
+				if (S.modificarMago(posicionModificarMago - 1, datosMago)) {
+					P("Mago modificado correctamente\n");
+				} else {
+					P("No se pudo modificar el Mago\n");
+				}
+
 				break;
 
 			case "3":
@@ -149,26 +175,59 @@ public class Main {
 				P(S.solicitarMagos());
 				P("-1) Devolverse\n");
 				P("Ingrese la posición del Mago que desea eliminar");
+
 				int posicion1 = Integer.valueOf(scanner.nextLine());
+
 				if (S.eliminarMago(posicion1 - 1) == true) {
 					P("Elemento removido\n");
 				} else {
 
 					if (posicion1 == -1) {
-						P("Ningún Mago fué removido\n");
+						P("Ningún Mago fue removido\n");
 					} else {
 						P("Ingrese una posición valida\n");
 					}
 				}
+
 				break;
 
 			case "4":
+
 				P("Agregar Hechizo");
 				menuAgregarHechizo(scanner);
+
 				break;
 
 			case "5":
-				P("Modificar Hechizo");
+
+				P("Lista de Hechizos\n");
+				P(S.solicitarhechizos());
+				P("-1) Devolverse\n");
+				P("Ingrese la posición del Hechizo que desea modificar:");
+
+				int posicionModificarHechizo = Integer.valueOf(scanner.nextLine());
+
+				if (posicionModificarHechizo == -1) {
+					P("Ningún Hechizo fue modificado\n");
+					break;
+				}
+
+				P("Ingrese los nuevos datos del Hechizo con el formato:");
+				P("NombreHechizo;Tipo;Daño;DatosExtra");
+				P("Ejemplos:");
+				P("Fuego: Lanzallamas;Fuego;80;5");
+				P("Tierra: Tumba Rocas;Tierra;18;40");
+				P("Planta: Polen Somnífero;Planta;81;3,10");
+				P("Agua: Escaldar;Agua;110;45,360");
+
+				String[] datosHechizo = scanner.nextLine().split(";");
+
+				if (S.modificarHechizo(posicionModificarHechizo - 1, datosHechizo)) {
+					P("Hechizo modificado correctamente\n");
+				} else {
+					P("No se pudo modificar el Hechizo\n");
+				}
+
 				break;
 
 			case "6":
@@ -177,26 +236,20 @@ public class Main {
 				P(S.solicitarhechizos());
 				P("-1) Devolverse\n");
 				P("Ingrese la posición del Hechizo que desea eliminar");
+
 				int posicion2 = Integer.valueOf(scanner.nextLine());
+
 				if (S.eliminarHechizo(posicion2 - 1) == true) {
 					P("Elemento removido\n");
 				} else {
 
 					if (posicion2 == -1) {
-						P("Ningún Hechizo fué removido\n");
+						P("Ningún Hechizo fue removido\n");
 					} else {
 						P("Ingrese una posición valida\n");
 					}
 				}
 
-				break;
-
-			case "7":
-				P("Saliendo del Administrador\n");
-				break;
-
-			default:
-				P("Ingrese una opción valida ...\n");
 				break;
 
 			}
@@ -266,6 +319,8 @@ public class Main {
 		}
 
 		S.trabajarHechizo(hechizo.split(";"));
+		S.guardarHechizos();
+		P("Hechizo agregado correctamente\n");
 
 	}
 

@@ -2,12 +2,10 @@ package dominio;
 
 public abstract class Hechizo {
 
-	// Declaración de atributos
 	protected String nombreHechizo;
 	protected String tipoHechizo;
 	protected int daño;
 
-	// Generar Constructor
 	public Hechizo(String nombreHechizo, String tipoHechizo, int daño) {
 		this.nombreHechizo = nombreHechizo;
 		this.tipoHechizo = tipoHechizo;
@@ -18,7 +16,16 @@ public abstract class Hechizo {
 		return nombreHechizo;
 	}
 
-	//Método abstracto generado para que todos sus hijos calculen su puntaje
+	public String getTipoHechizo() {
+		return tipoHechizo;
+	}
+
+	public int getDaño() {
+		return daño;
+	}
+
 	public abstract int entregarPuntaje();
+
+	public abstract String formatoArchivo();
 
 }

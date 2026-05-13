@@ -2,25 +2,26 @@ package dominio;
 
 public class Roca extends Hechizo {
 
-	// Declaración de atributos
-	private int mejoraDefenza;
+	private int mejoraDefensa;
 
-	// Generar Constructor
-	public Roca(String nombreHechizo, String tipoHechizo, int daño, int mejoraDefenza) {
+	public Roca(String nombreHechizo, String tipoHechizo, int daño, int mejoraDefensa) {
 		super(nombreHechizo, tipoHechizo, daño);
+		this.mejoraDefensa = mejoraDefensa;
+	}
 
-		this.mejoraDefenza = mejoraDefenza;
+	@Override
+	public int entregarPuntaje() {
+		return (this.daño * this.mejoraDefensa) / 2;
+	}
 
+	@Override
+	public String formatoArchivo() {
+		return nombreHechizo + ";" + tipoHechizo + ";" + daño + ";" + mejoraDefensa;
 	}
 
 	@Override
 	public String toString() {
-		return "Roca [mejoraDefenza=" + mejoraDefenza + "]";
-	}
-
-	// Método generado para entregar el puntaje de los Hechizos tipo Roca
-	public int entregarPuntaje() {
-		return (this.daño * this.mejoraDefenza) / 2;
+		return "Roca [mejoraDefensa=" + mejoraDefensa + "]";
 	}
 
 }
