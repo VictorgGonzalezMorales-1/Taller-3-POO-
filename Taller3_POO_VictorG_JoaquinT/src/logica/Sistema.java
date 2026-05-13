@@ -7,6 +7,10 @@ public interface Sistema {
 	void ordenarHechizos();
 	void ordenarMagos();
 	
+	//Administrador()
+	//trabajarMago(String[] partes, boolean agregarHechizos);
+	
+	
 	//Analista
 	String entregarTopHechizos();
 	String entregarTopMago();

@@ -235,6 +235,7 @@ public class SistemaImplementado implements Sistema {
 		return texto;
 	}
 
+	// Método generado para entregar todos los magos junto a su puntuación
 	public String entregarMagosPuntuacion() {
 
 		String texto = "";

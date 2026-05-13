@@ -16,7 +16,7 @@ public class Main {
 
 		lecturaHechizos();
 		lecturaMagos();
-		
+
 		paneles(scanner);
 
 		// Cerrar Scanner Global
@@ -128,7 +128,12 @@ public class Main {
 			switch (respuesta) {
 
 			case "1":
-				P("Agregar Mago");
+
+				P("Ingrese el nombre del Mago a agregar: ");
+				String[] m = scanner.nextLine().split(";");
+				S.trabajarMago(m, false);
+				P("Mago Agregado\n");
+
 				break;
 
 			case "2":
@@ -168,10 +173,10 @@ public class Main {
 	// Método generado para presentar las opciones de menú Analista junto
 	// a los resultados de las opciones
 	private static void menuAnalista(Scanner scanner) {
-		
+
 		S.ordenarHechizos();
 		S.ordenarMagos();
-		
+
 		String respuesta = "";
 
 		while (!respuesta.equals("7")) {
