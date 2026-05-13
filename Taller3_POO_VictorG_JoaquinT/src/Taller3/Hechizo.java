@@ -18,7 +18,7 @@ public abstract class Hechizo {
 		return nombreHechizo;
 	}
 	
-	
+	public abstract int entregarPuntaje();
 	
 	
 

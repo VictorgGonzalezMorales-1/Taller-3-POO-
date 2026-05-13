@@ -145,4 +145,27 @@ public class SistemaImplementado implements Sistema {
 
 	}
 
+	// Método generado para ordenar la ArrayList de Hechizos de menor a mayor
+	public void ordenarHechizos() {
+
+		Hechizo h;
+
+		for (int a = 0; a < H.size() - 1; a++) {
+
+			for (int b = 0; b < H.size() - a - 1; b++) {
+
+				if (H.get(b).entregarPuntaje() < H.get(b + 1).entregarPuntaje()) {
+
+					h = H.get(b);
+					H.set(b, H.get(b + 1));
+					H.set(b + 1, h);
+
+				}
+
+			}
+
+		}
+
+	}
+
 }

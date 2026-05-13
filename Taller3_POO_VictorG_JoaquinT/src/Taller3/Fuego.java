@@ -18,4 +18,9 @@ public class Fuego extends Hechizo {
 		return "Fuego [duracionQuemadura=" + duracionQuemadura + "]";
 	}
 
+	// Método generado para entregar el puntaje de los hechizos tipo fuego
+	public int entregarPuntaje() {
+		return this.daño * this.duracionQuemadura;
+	}
+
 }

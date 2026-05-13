@@ -20,4 +20,9 @@ public class Planta extends Hechizo {
 		return "Planta [duracionStun=" + duracionStun + ", cantPlantas=" + cantPlantas + "]";
 	}
 
+	// Método generado para entregar el puntaje de los hechizos tipo Planta
+	public int entregarPuntaje() {
+		return this.daño + (this.cantPlantas * this.duracionStun);
+	}
+
 }

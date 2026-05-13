@@ -16,7 +16,7 @@ public class Main {
 
 		lecturaHechizos();
 		lecturaMagos();
-
+		
 		paneles(scanner);
 
 		// Cerrar Scanner Global
@@ -168,7 +168,8 @@ public class Main {
 	// Método generado para presentar las opciones de menú Analista junto
 	// a los resultados de las opciones
 	private static void menuAnalista(Scanner scanner) {
-
+		
+		S.ordenarHechizos();
 		String respuesta = "";
 
 		while (!respuesta.equals("7")) {

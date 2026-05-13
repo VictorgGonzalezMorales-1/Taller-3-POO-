@@ -18,4 +18,9 @@ public class Roca extends Hechizo {
 		return "Roca [mejoraDefenza=" + mejoraDefenza + "]";
 	}
 
+	// Método generado para entregar el puntaje de los Hechizos tipo Roca
+	public int entregarPuntaje() {
+		return (this.daño * this.mejoraDefenza) / 2;
+	}
+
 }
