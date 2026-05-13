@@ -1,4 +1,4 @@
-package Taller3;
+package dominio;
 
 public abstract class Hechizo {
 

@@ -1,4 +1,4 @@
-package Taller3;
+package logica;
 
 public interface Sistema {
 
@@ -13,5 +13,6 @@ public interface Sistema {
 	String solicitarhechizos();
 	String solicitarMagos();
 	String entregarHechizosPuntuacion();
+	String entregarMagosPuntuacion();
 
 }

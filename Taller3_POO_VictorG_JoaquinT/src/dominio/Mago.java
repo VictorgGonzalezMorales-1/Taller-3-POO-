@@ -1,4 +1,4 @@
-package Taller3;
+package dominio;
 
 //Importar librerias necesarias
 import java.util.ArrayList;

@@ -1,7 +1,9 @@
-package Taller3;
+package logica;
 
 //Importar librerias necesarias
 import java.util.ArrayList;
+
+import dominio.*;
 
 public class SistemaImplementado implements Sistema {
 
@@ -59,7 +61,7 @@ public class SistemaImplementado implements Sistema {
 
 		for (Hechizo h2 : H) {
 
-			if (h2.getNombreHechizo().equals(h.nombreHechizo)) {
+			if (h2.getNombreHechizo().equals(h.getNombreHechizo())) {
 				return true;
 			}
 
@@ -137,7 +139,7 @@ public class SistemaImplementado implements Sistema {
 
 		for (int a = 0; a < M.size(); a++) {
 
-			texto += (a + 1) + ") " + M.get(a).getNombreMago() + " - " + M.get(a).entregarPuntaje() + "\n";
+			texto += (a + 1) + ") " + M.get(a).getNombreMago() + "\n";
 
 		}
 
@@ -198,7 +200,7 @@ public class SistemaImplementado implements Sistema {
 
 		for (int a = 0; a < 10; a++) {
 
-			texto += (a + 1) + ") " + H.get(a).nombreHechizo + "\n";
+			texto += (a + 1) + ") " + H.get(a).getNombreHechizo() + "\n";
 
 		}
 
@@ -212,16 +214,16 @@ public class SistemaImplementado implements Sistema {
 
 		for (int a = 0; a < H.size(); a++) {
 
-			texto += (a + 1) + ") " + H.get(a).nombreHechizo + " - Puntaje: " + H.get(a).entregarPuntaje() + "\n";
+			texto += (a + 1) + ") " + H.get(a).getNombreHechizo() + " - Puntaje: " + H.get(a).entregarPuntaje() + "\n";
 
 		}
 
 		return texto;
 	}
 
-	//Método generado para entregar los 3 mejores magos
+	// Método generado para entregar los 3 mejores magos
 	public String entregarTopMago() {
-		
+
 		String texto = "";
 
 		for (int a = 0; a < 3; a++) {
@@ -231,6 +233,20 @@ public class SistemaImplementado implements Sistema {
 		}
 
 		return texto;
+	}
+
+	public String entregarMagosPuntuacion() {
+
+		String texto = "";
+
+		for (int a = 0; a < M.size(); a++) {
+
+			texto += (a + 1) + ") " + M.get(a).getNombreMago() + " - Puntaje: " + M.get(a).entregarPuntaje() + "\n";
+
+		}
+
+		return texto;
+
 	}
 
 }

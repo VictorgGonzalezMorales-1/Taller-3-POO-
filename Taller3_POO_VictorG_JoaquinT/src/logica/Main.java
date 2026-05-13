@@ -1,4 +1,4 @@
-package Taller3;
+package logica;
 
 //Importar librerias necesarias
 import java.util.Scanner;
@@ -212,7 +212,7 @@ public class Main {
 
 			case "6":
 				P("Magos\n");
-				P(S.solicitarMagos());
+				P(S.entregarMagosPuntuacion());
 				break;
 
 			case "7":

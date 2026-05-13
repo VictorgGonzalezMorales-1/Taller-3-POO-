@@ -1,4 +1,4 @@
-package Taller3;
+package dominio;
 
 public class Agua extends Hechizo {
 
