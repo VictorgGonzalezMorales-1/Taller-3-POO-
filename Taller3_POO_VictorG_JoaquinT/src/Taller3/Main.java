@@ -11,10 +11,63 @@ public class Main {
 		// Generar Scanner global
 		Scanner scanner = new Scanner(System.in);
 
+		lecturaHechizos();
+		lecturaMagos();
+
 		paneles(scanner);
 
 		// Cerrar Scanner Global
 		scanner.close();
+
+	}
+
+	// Método generado para leer y enviar al sistema implementado las lineas del txt
+	// de Hechizos para que este trabaje con ellas
+	private static void lecturaHechizos() {
+
+		File file = new File("Hechizos.txt");
+		Scanner lector;
+
+		try {
+
+			lector = new Scanner(file);
+
+			while (lector.hasNextLine()) {
+
+				String[] partes = lector.nextLine().split(";");
+
+			}
+
+			lector.close();
+
+		} catch (Exception e) {
+			P("No se encontró el archivo ....");
+		}
+
+	}
+
+	// Método generado para leer y enviar al sistema implementado las lineas del txt
+	// de Magos para que este trabaje con ellas
+	private static void lecturaMagos() {
+
+		File file = new File("Magos.txt");
+		Scanner lector;
+
+		try {
+
+			lector = new Scanner(file);
+
+			while (lector.hasNextLine()) {
+
+				String[] partes = lector.nextLine().split(";");
+
+			}
+
+			lector.close();
+
+		} catch (Exception e) {
+			P("No se encontró el archivo ....");
+		}
 
 	}
 
@@ -118,8 +171,7 @@ public class Main {
 			P("Analista \n" + "\n" + "1) Top 10 Mejores Hechizos\r\n" + "2) Top 3 Mejores Magos\r\n"
 					+ "3) Mostrar todos los Hechizos\r\n" + "4) Mostrar todos los magos\r\n"
 					+ "5) Mostrar todos los Hechizos junto a su puntuacion\r\n"
-					+ "6) Mostrar todos los magos junto a su puntuacion\r\n"
-					+ "7) Salir del Analista");
+					+ "6) Mostrar todos los magos junto a su puntuacion\r\n" + "7) Salir del Analista");
 
 			respuesta = scanner.nextLine();
 
