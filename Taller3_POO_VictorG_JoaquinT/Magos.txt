@@ -4,7 +4,7 @@ Sasa;Infierno|Martillazo|Hidroariete|Envite Igneo
 Mul;Gigadrenado|Rayo Burbuja|Danza Lluvia|Pistola Agua
 Branco;Arraigo|Silvato|Danza Lluvia
 DamianValdivia;Acua Aro|Tumba Rocas|Polen Somnífero|Escaldar|Disparo Lodo|Cascada|Pirotecnia
-EmaArdillaRabiosa0;Origen Pulso|Fuego Sagrado|Cascada|Llamarada Azul
+EmaArdillaRabiosa0 ;Origen Pulso|Fuego Sagrado|Cascada|Llamarada Azul
 Danini;Fuego Sagrado|Pedrada|Envite Igneo|Hierba Lazo|Surf
 Maxi;Explosión Ígnea|Envite Igneo|Agua Lodosa
 NicolasDiaz;Disparo Lodo|Salmuera|Colmillo Igneo|Excavar|Calcinación

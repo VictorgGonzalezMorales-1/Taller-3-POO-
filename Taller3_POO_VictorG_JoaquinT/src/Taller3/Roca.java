@@ -13,4 +13,9 @@ public class Roca extends Hechizo {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Roca [mejoraDefenza=" + mejoraDefenza + "]";
+	}
+
 }

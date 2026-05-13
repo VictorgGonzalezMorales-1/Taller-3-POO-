@@ -15,4 +15,9 @@ public class Planta extends Hechizo {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Planta [duracionStun=" + duracionStun + ", cantPlantas=" + cantPlantas + "]";
+	}
+
 }

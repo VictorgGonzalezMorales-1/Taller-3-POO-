@@ -14,4 +14,10 @@ public abstract class Hechizo {
 		this.daño = daño;
 	}
 
+	public String getNombreHechizo() {
+		return nombreHechizo;
+	}
+	
+	
+
 }

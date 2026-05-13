@@ -5,8 +5,8 @@ import java.util.Scanner;
 import java.io.*;
 
 public class Main {
-	
-	//Variable comunicadora entre Sistema y Main
+
+	// Variable comunicadora entre Sistema y Main
 	static Sistema S = new SistemaImplementado();
 
 	public static void main(String[] args) {
@@ -15,7 +15,7 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 
 		lecturaHechizos();
-		lecturaMagos();
+		// lecturaMagos();
 
 		paneles(scanner);
 
@@ -38,13 +38,14 @@ public class Main {
 			while (lector.hasNextLine()) {
 
 				String[] partes = lector.nextLine().split(";");
+				S.trabajarHechizo(partes);
 
 			}
 
 			lector.close();
 
 		} catch (Exception e) {
-			P("No se encontró el archivo ....");
+			P(e.getMessage());
 		}
 
 	}

@@ -13,4 +13,9 @@ public class Agua extends Hechizo {
 		this.presionDelAgua = presionDelAgua;
 	}
 
+	@Override
+	public String toString() {
+		return "Agua [cantidadHeal=" + cantidadHeal + ", presionDelAgua=" + presionDelAgua + "]";
+	}
+
 }
