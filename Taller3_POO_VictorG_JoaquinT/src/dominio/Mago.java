@@ -28,7 +28,20 @@ public class Mago {
 	}
 
 	public void olvidarHechizo(Hechizo h) {
-		hechizos.remove(h);
+
+		if (h == null) {
+			return;
+		}
+
+		for (int i = 0; i < hechizos.size(); i++) {
+
+			if (hechizos.get(i).getNombreHechizo().equals(h.getNombreHechizo())) {
+				hechizos.remove(i);
+				i--;
+			}
+
+		}
+
 	}
 
 	public int entregarPuntaje() {

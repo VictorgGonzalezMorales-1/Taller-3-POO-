@@ -336,6 +336,14 @@ public class Main {
 
 				break;
 
+			case "7":
+				P("Saliendo del Administrador\n");
+				break;
+
+			default:
+				P("Ingrese una opción valida ...\n");
+				break;
+
 			}
 
 		}
@@ -348,12 +356,25 @@ public class Main {
 		String hechizo = "";
 
 		P("Ingrese el nombre del Hechizo");
-		hechizo += scanner.nextLine() + ";";
+		String nombreHechizo = scanner.nextLine();
+
+		if (nombreHechizo.length() == 0) {
+			P("No se agregó el hechizo porque no se ingresó nombre.\n");
+			return;
+		}
+
+		hechizo += nombreHechizo + ";";
+
 		P("Ingrese el tipo de Daño:\n1) Fuego\n2) Tierra\n3) Planta\n4) Agua");
 		String tipo = scanner.nextLine();
 
 		P("Ingrese el daño del Hechizo");
 		String daño = scanner.nextLine();
+
+		if (daño.length() == 0) {
+			P("No se agregó el hechizo porque no se ingresó daño.\n");
+			return;
+		}
 
 		switch (tipo) {
 
@@ -362,7 +383,15 @@ public class Main {
 			hechizo += "Fuego;";
 			hechizo += daño + ";";
 			P("Ingrese la duración de la quemadura");
-			hechizo += scanner.nextLine();
+
+			String duracionQuemadura = scanner.nextLine();
+
+			if (duracionQuemadura.length() == 0) {
+				P("No se agregó el hechizo porque no se ingresó duración de quemadura.\n");
+				return;
+			}
+
+			hechizo += duracionQuemadura;
 
 			break;
 
@@ -371,7 +400,15 @@ public class Main {
 			hechizo += "Tierra;";
 			hechizo += daño + ";";
 			P("Ingrese la mejora de defensa");
-			hechizo += scanner.nextLine();
+
+			String mejoraDefensa = scanner.nextLine();
+
+			if (mejoraDefensa.length() == 0) {
+				P("No se agregó el hechizo porque no se ingresó mejora de defensa.\n");
+				return;
+			}
+
+			hechizo += mejoraDefensa;
 
 			break;
 
@@ -380,9 +417,26 @@ public class Main {
 			hechizo += "Planta;";
 			hechizo += daño + ";";
 			P("Ingrese la DuracionStun");
-			hechizo += scanner.nextLine() + ",";
+
+			String duracionStun = scanner.nextLine();
+
+			if (duracionStun.length() == 0) {
+				P("No se agregó el hechizo porque no se ingresó DuracionStun.\n");
+				return;
+			}
+
+			hechizo += duracionStun + ",";
+
 			P("Ingrese la cantidad de plantas");
-			hechizo += scanner.nextLine();
+
+			String cantPlantas = scanner.nextLine();
+
+			if (cantPlantas.length() == 0) {
+				P("No se agregó el hechizo porque no se ingresó cantidad de plantas.\n");
+				return;
+			}
+
+			hechizo += cantPlantas;
 
 			break;
 
@@ -391,20 +445,37 @@ public class Main {
 			hechizo += "Agua;";
 			hechizo += daño + ";";
 			P("Ingrese la CantidadHeal");
-			hechizo += scanner.nextLine() + ",";
+
+			String cantidadHeal = scanner.nextLine();
+
+			if (cantidadHeal.length() == 0) {
+				P("No se agregó el hechizo porque no se ingresó CantidadHeal.\n");
+				return;
+			}
+
+			hechizo += cantidadHeal + ",";
+
 			P("Ingrese la Presión del Agua");
-			hechizo += scanner.nextLine();
+
+			String presionAgua = scanner.nextLine();
+
+			if (presionAgua.length() == 0) {
+				P("No se agregó el hechizo porque no se ingresó presión del agua.\n");
+				return;
+			}
+
+			hechizo += presionAgua;
 
 			break;
 
 		default:
-			P("Tipo no reconocido ...");
-			break;
+			P("Tipo no reconocido. No se agregó ningún hechizo.\n");
+			return;
 		}
 
 		S.trabajarHechizo(hechizo.split(";"));
 		S.guardarHechizos();
-		P("Hechizo agregado correctamente\n");
+		P("Proceso de agregar hechizo finalizado\n");
 
 	}
 

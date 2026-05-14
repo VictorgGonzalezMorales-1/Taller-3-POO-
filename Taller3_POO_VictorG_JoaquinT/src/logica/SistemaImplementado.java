@@ -49,14 +49,22 @@ public class SistemaImplementado implements Sistema {
 	// para solo tener lo necesario
 	public boolean revisarHechizoUnico(Hechizo h) {
 
+		if (h == null) {
+			return true;
+		}
+
 		if (H.size() == 0) {
 			return false;
 		}
 
 		for (Hechizo h2 : H) {
 
-			if (h2.getNombreHechizo().equals(h.getNombreHechizo())) {
-				return true;
+			if (h2 != null) {
+
+				if (h2.getNombreHechizo().equals(h.getNombreHechizo())) {
+					return true;
+				}
+
 			}
 
 		}
@@ -133,10 +141,18 @@ public class SistemaImplementado implements Sistema {
 	// Método generado para buscar un hechizo con su nombre
 	public Hechizo buscarHechizo(String nombreHechizo) {
 
+		if (nombreHechizo == null) {
+			return null;
+		}
+
 		for (Hechizo h : H) {
 
-			if (h.getNombreHechizo().equals(nombreHechizo)) {
-				return h;
+			if (h != null) {
+
+				if (h.getNombreHechizo().equals(nombreHechizo)) {
+					return h;
+				}
+
 			}
 
 		}
@@ -227,11 +243,16 @@ public class SistemaImplementado implements Sistema {
 	public String entregarTopHechizos() {
 
 		String texto = "";
+		int limite = 10;
 
-		for (int a = 0; a < 10; a++) {
+		if (H.size() < 10) {
+			limite = H.size();
+		}
+
+		for (int a = 0; a < limite; a++) {
 
 			if (H.get(a) != null) {
-				texto += (a + 1) + ") " + H.get(a).getNombreHechizo() + "\n";
+				texto += (a + 1) + ") " + H.get(a).getNombreHechizo() + " - Puntaje: " + H.get(a).entregarPuntaje() + "\n";
 			}
 
 		}
@@ -259,11 +280,17 @@ public class SistemaImplementado implements Sistema {
 	public String entregarTopMago() {
 
 		String texto = "";
+		int limite = 3;
 
-		for (int a = 0; a < 3; a++) {
+		if (M.size() < 3) {
+			limite = M.size();
+		}
+
+		for (int a = 0; a < limite; a++) {
 
 			if (M.get(a) != null) {
-				texto += (a + 1) + ") " + M.get(a).getNombreMago() + "\n";
+				texto += (a + 1) + ") " + M.get(a).getNombreMago()
+						+ " - Puntaje: " + M.get(a).entregarPuntaje() + "\n";
 			}
 
 		}
@@ -278,7 +305,10 @@ public class SistemaImplementado implements Sistema {
 
 		for (int a = 0; a < M.size(); a++) {
 
-			texto += (a + 1) + ") " + M.get(a).getNombreMago() + " - Puntaje: " + M.get(a).entregarPuntaje() + "\n";
+			if (M.get(a) != null) {
+				texto += (a + 1) + ") " + M.get(a).getNombreMago()
+						+ " - Puntaje: " + M.get(a).entregarPuntaje() + "\n";
+			}
 
 		}
 
@@ -347,13 +377,27 @@ public class SistemaImplementado implements Sistema {
 			return false;
 		}
 
-		if (partes.length < 2) {
+		if (partes == null) {
+			return false;
+		}
+
+		if (partes.length < 1) {
+			return false;
+		}
+
+		if (partes[0].length() == 0) {
 			return false;
 		}
 
 		Mago nuevoMago = new Mago(partes[0]);
 
-		agregarHechizo(partes[1], nuevoMago);
+		if (partes.length >= 2) {
+
+			if (partes[1].length() > 0) {
+				agregarHechizo(partes[1], nuevoMago);
+			}
+
+		}
 
 		M.set(posicion, nuevoMago);
 
